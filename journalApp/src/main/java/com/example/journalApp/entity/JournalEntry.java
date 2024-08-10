@@ -1,6 +1,8 @@
 package com.example.journalApp.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.annotation.Collation;
@@ -14,10 +16,11 @@ import java.util.Date;
 
 //used lombok for auto generation of getter and setter methods
 @Data
+@NoArgsConstructor
 public class JournalEntry {
     @Id
     private ObjectId id;
-
+    @NonNull
     private String title;
 
     private String content;
