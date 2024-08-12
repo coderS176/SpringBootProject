@@ -51,4 +51,9 @@ public class JournalEntryService {
         userEntryService.saveEntry(user);
         journalEntryRepo.deleteById(id);
     }
+
+//    public List<JournalEntry> findByUserName(String userName) {
+//        User user = userEntryService.findByUserName(userName);
+//        return user.getJournalEntries();
+//    }
 }
