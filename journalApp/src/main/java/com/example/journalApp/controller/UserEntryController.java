@@ -1,17 +1,14 @@
 package com.example.journalApp.controller;
 
 import com.example.journalApp.entity.User;
-import com.example.journalApp.service.QouteService;
+import com.example.journalApp.service.QuoteService;
 import com.example.journalApp.service.UserEntryService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -20,7 +17,7 @@ public class UserEntryController {
     private UserEntryService userEntryService;
 
     @Autowired
-    private QouteService qouteService;
+    private QuoteService quoteService;
 
 //    GetAll user and getUserById ki functionality user ko nhi rhegi!!
 /*  @GetMapping("/getAllUsers")
@@ -67,7 +64,7 @@ public class UserEntryController {
     public String greetings() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
-        String q = qouteService.getQuote();
+        String q = quoteService.getQuote();
         String response = "Hi, " + userName + " " + q;
         return response;
     }
