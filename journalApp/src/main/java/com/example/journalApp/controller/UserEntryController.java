@@ -1,6 +1,7 @@
 package com.example.journalApp.controller;
 
 import com.example.journalApp.entity.User;
+import com.example.journalApp.service.QouteService;
 import com.example.journalApp.service.UserEntryService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import java.util.List;
 public class UserEntryController {
     @Autowired
     private UserEntryService userEntryService;
+
+    @Autowired
+    private QouteService qouteService;
 
 //    GetAll user and getUserById ki functionality user ko nhi rhegi!!
 /*  @GetMapping("/getAllUsers")
@@ -46,7 +50,7 @@ public class UserEntryController {
 
     @PutMapping
 
-/*  There are so many logical errors in this part of code. ALL the Errors and Exceptions needs to get resolved soon!*/
+    /*  There are so many logical errors in this part of code. ALL the Errors and Exceptions needs to get resolved soon!*/
     public ResponseEntity<?> updateUser(@RequestBody User newUser) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
@@ -57,5 +61,14 @@ public class UserEntryController {
             userEntryService.saveEntry(userInDb);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping
+    public String greetings() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+        String q = qouteService.getQuote();
+        String response = "Hi, " + userName + " " + q;
+        return response;
     }
 }

@@ -19,10 +19,12 @@ public class UserEntryService {
     private UserEntryRepo userEntryRepo;
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     public void saveEntry(User user) {
         userEntryRepo.save(user);
     }
-    public void saveNewEntry(User user){
+
+    public void saveNewEntry(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(List.of("USER"));
         userEntryRepo.save(user);
@@ -42,5 +44,11 @@ public class UserEntryService {
 
     public User findByUserName(String userName) {
         return userEntryRepo.findByUserName(userName);
+    }
+
+    public void saveAdmin(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(List.of("USER", "ADMIN"));
+        userEntryRepo.save(user);
     }
 }

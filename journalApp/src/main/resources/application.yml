@@ -1,0 +1,23 @@
+#spring.application.name=Journal App
+#spring.data.mongodb.uri =
+#spring.data.mongodb.database=journaldb
+#spring.main.allow-circular-references=true
+##spring.data.mongodb.username = myjournaluser
+##spring.data.mongodb.password = mypassword
+#spring.data.mongodb.auto-index-creation=true
+
+spring:
+  application:
+    name: Journal App
+  data:
+    mongodb:
+      uri: mongodb+srv://guptajirock176:0j29jrZA7M1o0hbn@cluster0.0k0ax.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      database: journaldb
+      auto-index-creation: true
+  main:
+    allow-circular-references: true
+
+server:
+  port: 8081
+  servlet:
+    context-path: /journal
