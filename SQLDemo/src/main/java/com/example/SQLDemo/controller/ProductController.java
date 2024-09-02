@@ -13,38 +13,62 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/addProduct")
+   // create a new product
+    @PostMapping
     public Product addProduct(@RequestBody Product product){
         return productService.saveProduct(product);
     }
 
-    @PostMapping("/addProducts")
+    // create multiple products
+    @PostMapping("/batch")
     public List<Product> addProducts(@RequestBody List<Product> products){
         return productService.saveProducts(products);
     }
 
-    @GetMapping("/getAll")
+    //retrieve all products
+    @GetMapping
     public List<Product> getProducts(){
         return productService.getProducts();
     }
 
-    @GetMapping("/getById/{id}")
+    //retrieve a product by ID
+    @GetMapping("/{id}")
     public Product getProductById(@PathVariable int id){
         return productService.getById(id);
     }
 
-    @GetMapping("/getByName/{name}")
-    public List<Product> getProductByName(@PathVariable String name){
+   // search for products by name
+    @GetMapping("/search")
+    public List<Product> getProductByName(@RequestParam String name){
         return productService.getProductByName(name);
     }
 
-    @PutMapping("/update")
+    // Update an existing product
+    @PutMapping("/{id}")
     public Product updateProduct(@RequestBody Product product){
         return productService.updateProduct(product);
     }
 
-    @DeleteMapping("/byId/{id}")
+    //Delete an existing product
+    @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable int id){
         return productService.deleteProduct(id);
     }
 }
+
+
+
+/*
+*
+*  API endpoints typically described using a consistent naming convention and structure.
+* This approach often adheres to restful principles and commonly used conventions for URL paths, HTTP methods, and
+* parameter naming.
+
+Create Single Product: POST /products
+Create Multiple Products: POST /products/batch
+Retrieve All Products: GET /products
+Retrieve Product by ID: GET /products/{id}
+Search Products by Name: GET /products/search?name={name}
+Update Product: PUT /products/{id}
+Delete Product: DELETE /products/{id}
+* */
